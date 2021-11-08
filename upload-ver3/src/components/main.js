@@ -8,6 +8,7 @@ export default class Main extends React.Component{
             listFiles : []
         };
         this.handleChange=this.handleChange.bind(this);
+        this.handleUpload=this.handleUpload.bind(this);
     }
 
     handleChange(event){
@@ -33,9 +34,9 @@ export default class Main extends React.Component{
         // })
 
         let formData = new FormData();
-        for(let index=0;index<this.state.listFiles.length;index++){
-            formData.append("file",this.state.listFiles[index]);
-        }        
+        for(let i=0;i<this.state.listFiles.length;i++){
+            formData.append('file',this.state.listFiles[i]);
+        }  
 
         xhr.send(formData)
         console.log(formData);

@@ -6,7 +6,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
 }
 .App{
     display: grid;
@@ -21,6 +20,7 @@
     text-align: center;
     position: relative;
     line-height: 100px;
+    cursor: pointer;
 }
 #wrap-upload-field{
     height: 100vh;
@@ -34,4 +34,5 @@
     width: 70px;
     height: 25px;
     background-color: aquamarine;
+    cursor: pointer;
 }
