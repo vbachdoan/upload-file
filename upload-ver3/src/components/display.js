@@ -7,17 +7,23 @@ export default class Display extends React.Component{
         this.state = {
             filesInfor: [],
             dataFiles : [],
+            signal: ""
         }
-        this.handleDelete=this.handleDelete.bind(this);
     }
 
     handleDelete(file){
-        fetch("http://localhost:8080/delete", {method: 'DELETE'})
-            .then(() => {
-               alert('removed');
+        fetch('http://localhost:8080/delete', {
+                method: 'POST',
+                body: file
+            }).then(response => response.json())
+            .then(result => {
+                this.setState({
+                    dataFiles: result,
+                    signal: "deleted"
+                })
             })
-            .catch(err => {
-              console.error(err)
+            .catch(e => {
+                console.log(e);
             });
     }
 
@@ -30,7 +36,7 @@ export default class Display extends React.Component{
             })
             .catch(e => {
                 console.log(e);
-        });
+            });
     }
 
     render(){
@@ -41,7 +47,7 @@ export default class Display extends React.Component{
                     <div className="file-block">
                         <p>File type: type of {file.filename}</p>
                         <p>File name: {file.extension}</p>
-                        <div style={{width: "40px", height: "40px", backgroundColor:"red"}} onClick={this.handleDelete}></div>
+                        <div style={{width: "40px", height: "40px", backgroundColor:"red"}} onClick={(file)=>this.handleDelete(file)}></div>
                     </div>
                 )}
             </div>
