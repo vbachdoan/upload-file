@@ -43,7 +43,7 @@ export default class Main extends React.Component{
 
         let formData = new FormData();
         for(let i=0;i<this.state.listFiles.length;i++){
-            formData.append('files',this.state.listFiles[i]);
+            formData.append('file',this.state.listFiles[i]);
         }  
 
         xhr.send(formData);
