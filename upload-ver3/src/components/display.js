@@ -8,13 +8,18 @@ export default class Display extends React.Component{
             filesInfor: [],
             dataFiles : [],
         }
+        this.handleDelete=this.handleDelete.bind(this);
     }
 
-    // handleDelete(file){
-    //     let xhr = new XMLHttpRequest();
-    //     xhr.open("POST", "http://localhost:8080/delete");
-    //     xhr.send(file);
-    // }
+    handleDelete(file){
+        fetch("http://localhost:8080/delete", {method: 'DELETE'})
+            .then(() => {
+               alert('removed');
+            })
+            .catch(err => {
+              console.error(err)
+            });
+    }
 
     componentDidMount(){
         fetch("http://localhost:8080/Listfiles")
@@ -36,6 +41,7 @@ export default class Display extends React.Component{
                     <div className="file-block">
                         <p>File type: type of {file.filename}</p>
                         <p>File name: {file.extension}</p>
+                        <div style={{width: "40px", height: "40px", backgroundColor:"red"}} onClick={this.handleDelete}></div>
                     </div>
                 )}
             </div>
