@@ -34,8 +34,8 @@ export default class Display extends React.Component{
             <div id="wrap-files">
                 {this.state.dataFiles && this.state.dataFiles.map(file=>
                     <div className="file-block">
-                        <p>File type: type of {file}</p>
-                        <p>File name: {file}</p>
+                        <p>File type: type of {file.filename}</p>
+                        <p>File name: {file.extension}</p>
                     </div>
                 )}
             </div>
