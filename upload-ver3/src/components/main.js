@@ -29,7 +29,7 @@ export default class Main extends React.Component{
     handleUpload(){
 
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://localhost:8080/upload");
+        xhr.open("POST", "http://localhost:8080/admin/upload");
 
         xhr.upload.addEventListener('progress',(event)=>{
             let fileLoaded = Math.floor((event.loaded / event.total) * 100);
