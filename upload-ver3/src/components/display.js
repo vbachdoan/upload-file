@@ -2,25 +2,31 @@ import React from 'react';
 
 export default class Display extends React.Component{
 
-    constructor(props){
+    constructor(){
         super();
         this.state = {
             filesInfor: [],
             dataFiles : [],
-            signal: ""
+            signal: "",
+            fileDelete:"",
         }
+        this.handleDelete=this.handleDelete.bind(this);
     }
 
-    handleDelete(file){
-        fetch('http://localhost:8080/delete', {
-                method: 'POST',
-                body: file
+    handleDelete(fileSelected){
+        let filename = new FormData();
+        alert(`start delete${fileSelected}`)
+        filename.append("filename",fileSelected)
+        fetch('http://localhost:8080/admin/delete', {
+                method: 'DELETE',
+                body: filename
             }).then(response => response.json())
             .then(result => {
                 this.setState({
                     dataFiles: result,
                     signal: "deleted"
                 })
+                alert(this.state.signal)
             })
             .catch(e => {
                 console.log(e);
@@ -43,11 +49,11 @@ export default class Display extends React.Component{
         return(
             <>
             <div id="wrap-files">
-                {this.state.dataFiles && this.state.dataFiles.map(file=>
-                    <div className="file-block">
-                        <p>File type: type of {file.filename}</p>
-                        <p>File name: {file.extension}</p>
-                        <div style={{width: "40px", height: "40px", backgroundColor:"red"}} onClick={(file)=>this.handleDelete(file)}></div>
+                {this.state.dataFiles && this.state.dataFiles.map((filename, key)=>
+                    <div className="file-block" key={key}>
+                        <p>File type: type of {filename}</p>
+                        <p>File name: {filename}</p>
+                        <div style={{width: "40px", height: "40px", backgroundColor:"red"}} onClick={()=>this.handleDelete(filename)}></div>
                     </div>
                 )}
             </div>
