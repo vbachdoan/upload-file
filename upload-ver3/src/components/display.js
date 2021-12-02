@@ -49,11 +49,11 @@ export default class Display extends React.Component{
         return(
             <>
             <div id="wrap-files">
-                {this.state.dataFiles && this.state.dataFiles.map((filename, key)=>
+                {this.state.dataFiles && this.state.dataFiles.map((file, key)=>
                     <div className="file-block" key={key}>
-                        <p>File type: type of {filename}</p>
-                        <p>File name: {filename}</p>
-                        <div style={{width: "40px", height: "40px", backgroundColor:"red"}} onClick={()=>this.handleDelete(filename)}></div>
+                        <p>File type: type of {file.extension}</p>
+                        <p>File name: {file.filename}</p>
+                        <div style={{width: "40px", height: "40px", backgroundColor:"red"}} onClick={()=>this.handleDelete(file.filename)}></div>
                     </div>
                 )}
             </div>
